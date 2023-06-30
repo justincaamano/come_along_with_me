@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "278728082831",
+    "project_id": "cawm-b6271",
+    "storage_bucket": "cawm-b6271.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278728082831:android:a5185f2f9cb6085bd737fa",
+        "android_client_info": {
+          "package_name": "com.example.come_along_with_me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278728082831-t8sbdhorbf9g5n2nr7eme60i4u6nh4d2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv1cIIDCZ_kaOpzhy5pFoWoVDG-_EpkYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278728082831-t8sbdhorbf9g5n2nr7eme60i4u6nh4d2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
