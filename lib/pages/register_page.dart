@@ -1,13 +1,14 @@
 import 'package:come_along_with_me/Entities/user_entitiy.dart';
 import 'package:come_along_with_me/cubit/auth/cubit/auth_cubit.dart';
 import 'package:come_along_with_me/cubit/credential/cubit/credential_cubit.dart';
-import 'package:come_along_with_me/pages/Dashboard.dart';
+//import 'package:come_along_with_me/pages/Dashboard.dart';
 import 'package:come_along_with_me/widgets/Labels.dart';
 import 'package:come_along_with_me/widgets/Logo.dart';
 import 'package:come_along_with_me/widgets/btn_login.dart';
 import 'package:come_along_with_me/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'login_page.dart';
 
 class registerpage extends StatelessWidget {
   @override
@@ -48,28 +49,30 @@ class __FormState extends State<_Form> {
     return Container(
       child: BlocConsumer<CredentialCubit, CredentialState>(
         listener: (context, CredentialState) {
-          if (CredentialState is CredentialSucess){
+          if (CredentialState is CredentialSucess) {
             BlocProvider.of<AuthCubit>(context).loggedIn();
           }
 
-          if (CredentialState is CredentialFailure){
+          if (CredentialState is CredentialFailure) {
             print("Invalid credentials");
           }
         },
         builder: (context, CredentialState) {
-
-          if (CredentialState is CredentialLoading){
+          if (CredentialState is CredentialLoading) {
             return CircularProgressIndicator();
           }
 
-          if (CredentialState is CredentialSucess){
-            return BlocBuilder<AuthCubit,AuthState>(builder: (context, authState ) {
-              if(authState is AuthenticatedState){
-                return DashboardPage(uid: authState.uid,);
-              }else{ return _bodyWidget();}
-            }
-            
-            );
+          if (CredentialState is CredentialSucess) {
+            return BlocBuilder<AuthCubit, AuthState>(
+                builder: (context, authState) {
+              if (authState is AuthenticatedState) {
+                return LoginPage(
+                  uid: authState.uid,
+                );
+              } else {
+                return _bodyWidget();
+              }
+            });
           }
           return _bodyWidget();
         },
@@ -121,14 +124,13 @@ class __FormState extends State<_Form> {
     }
     BlocProvider.of<CredentialCubit>(context).submitSignUp(
         user: UserEntity(
-      name: nameCtrl.text,
-      email: emailCtrl.text,
-      password: passCtrl.text,
-      isOnline: false,
-      status: "",
-      profileUrl: "",
-      phone: "",
-      uid: ""
-    ));
+            name: nameCtrl.text,
+            email: emailCtrl.text,
+            password: passCtrl.text,
+            isOnline: false,
+            status: "",
+            profileUrl: "",
+            phone: "",
+            uid: ""));
   }
 }

@@ -39,9 +39,23 @@ class FirebaseRemoteDataSourceImpl implements FirebaseRemoteDataSource {
   Future<String> getCurrentUserId() async => auth.currentUser!.uid;
 
   @override
-  Future<void> getUpdateUser(UserEntity user) {
-    // TODO: implement getUpdateUser
-    throw UnimplementedError();
+  Future<void> getUpdateUser(UserEntity user) async {
+    final userCollection = firestore.collection('users');
+    final uid = await getCurrentUserId();
+
+    if (uid != null) {
+      final updatedUserData = UserModel(
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        phone: user.phone,
+        profileUrl: user.profileUrl,
+        status: user.status,
+        uid: uid,
+      ).toDocument();
+
+      await userCollection.doc(uid).update(updatedUserData);
+    }
   }
 
   @override
@@ -66,7 +80,8 @@ class FirebaseRemoteDataSourceImpl implements FirebaseRemoteDataSource {
     final password = user.password;
 
     if (email != null && password != null) {
-      await auth.createUserWithEmailAndPassword(email: email, password: password);
+      await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
     }
   }
 }

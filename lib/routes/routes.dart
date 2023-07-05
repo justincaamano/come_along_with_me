@@ -7,12 +7,13 @@ import 'package:flutter/material.dart';
 
 import '../pages/group_page.dart';
 
-final Map<String, Widget Function(BuildContext) > appRoutes = {
-
-"login": ( _ ) => LoginPage(uid: '',),
-"register": ( _ ) => registerpage(),
-"dashboard": ( _ ) => DashboardPage(uid: '',),
-"CreateGroup": ( _ ) => CreateGroupPage(),
-"SingleChat":( _ ) => SingleChat(), 
-"grouppage":( _ ) => GroupPage(),
+final Map<String, Widget Function(BuildContext)> appRoutes = {
+  "login": (_) => LoginPage(
+        uid: '',
+      ),
+  "register": (_) => registerpage(),
+  "dashboard": (_) => DashboardPage(uid: ''),
+  "CreateGroup": (_) => CreateGroupPage(),
+  "SingleChat": (_) => SingleChat(),
+  "grouppage": (_) => GroupPage(),
 };
